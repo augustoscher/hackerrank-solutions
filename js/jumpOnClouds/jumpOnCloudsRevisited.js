@@ -1,11 +1,6 @@
-// HackerRank
-// Jumping on the Clouds: Revisited
+// HackerRank - Jumping on the Clouds: Revisited
 const jumpingOnClouds = (c, k) => {
-  const clouds = c.map((item, idx) => {
-    return {
-      index: idx, value: item 
-    }
-  })
+  const clouds = c.map((item, index) => ({ 'index': idx, 'value': item} ))
 
   let energy = 100;
   let jumpIndex = 0
