@@ -15,11 +15,7 @@ const reversedNum = num =>
 //start: 20
 //end: 23
 //r = [20, 21, 21, 23]
-const fillRange = (start, end) => {
-  return Array(end - start + 1)
-    .fill()
-    .map((item, index) => start + index);
-};
+const fillRange = (start, end) => Array(end - start + 1).fill().map((_item, index) => start + index);
 
 // Complete the beautifulDays function below.
 function beautifulDays(i, j, k) {
