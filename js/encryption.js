@@ -27,7 +27,7 @@ function encryption(s) {
     encrypted += ' ';
   }
 
-  return encrypted
+  return encrypted.trim()
 }
 
 console.log(encryption('if man was meant to stay on the ground god would have given us roots'));
