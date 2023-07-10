@@ -15,7 +15,7 @@ function encryption(s) {
   let startIndex = 0;
 
   for (let i = 0; i <= row; i++) {
-    matrix.push(str.slice(startIndex,startIndex+col));
+    matrix.push(str.slice(startIndex, startIndex + col));
     startIndex += col;
   }
 
