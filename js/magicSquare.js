@@ -1,7 +1,5 @@
 // dd 1+2+3+4+5+6+7+8+9 = 45, then divide by 3. The magic constant for this example is 15, as 45 / 3 = 15
 
-
-
 const formingMagicSquare = (s) => {
   const magicSquares = [
     [[8, 1, 6], [3, 5, 7], [4, 9, 2]],
@@ -26,7 +24,6 @@ const formingMagicSquare = (s) => {
 
   console.log(minCost)
 }
-
 
 formingMagicSquare([[4, 8, 2],[4, 5, 7],[6, 1, 6]]) //4
 formingMagicSquare([[4, 9, 2], [3, 5, 7], [8, 1, 5]]) //1
