@@ -9,3 +9,4 @@ const getSecondLargest = nums => {
 };
 
 console.log(getSecondLargest([2,3,6,6,5]))
+
