@@ -1,3 +1,5 @@
+const CONSIDERED_DAYS = 6
+
 const events = [
   'timestamp=2023-09-27T00:00:00.000Z domain=example.com srcHost=192.168.0.1',
   'timestamp=2023-09-27T03:00:00.000Z domain=example.com srcHost=192.168.0.1',
@@ -22,21 +24,44 @@ const events = [
   'timestamp=2023-09-27T00:21:00.000Z domain=bar.example.net userID=11',
   'timestamp=2023-09-27T01:00:00.000Z domain=foo.example.org userID=1',
   'timestamp=2023-09-27T08:00:00.000Z domain=foo.example.org userID=2',
-  'timestamp=2023-09-27T15:00:00.000Z domain=foo.example.org userID=8'
+  'timestamp=2023-09-26T15:00:00.000Z domain=foo.example.org userID=8'
 ]
 
-const parsedEvents = events.map((event) => {
-  const obj = event.split(' ').reduce((acc, item) => {
-    const [k, v] = item.split('=')
-    return {
-      ...acc,
-      [k]: v
-    }
-  }, {})
-  return obj
-})
+// const addHoursToDate = (date, hours) =>
+//   new Date(new Date(date).setHours(date.getHours() + hours))
 
-const commonEvents = parsedEvents.reduce((acc, event) => {
+const addDaysToDate = (date, days) => {
+  var result = new Date(date)
+  result.setDate(result.getDate() + days)
+  return result
+}
+
+const getParsedEvents = (dataEvents) =>
+  dataEvents.map((event) => {
+    const obj = event.split(' ').reduce((acc, item) => {
+      const [k, v] = item.split('=')
+      return {
+        ...acc,
+        [k]: k === 'timestamp' ? new Date(v) : v
+      }
+    }, {})
+    return obj
+  })
+
+const parsedEvents = getParsedEvents(events).sort(
+  (a, b) => a.timestamp - b.timestamp
+)
+
+const lastConsideredEventTimestamp = addDaysToDate(
+  parsedEvents[0].timestamp,
+  CONSIDERED_DAYS
+)
+
+const filteredEvents = parsedEvents.filter(
+  ({ timestamp }) => timestamp <= lastConsideredEventTimestamp
+)
+
+const commonEvents = filteredEvents.reduce((acc, event) => {
   acc[event.domain] = acc[event.domain]
     ? {
         ...acc[event.domain],
