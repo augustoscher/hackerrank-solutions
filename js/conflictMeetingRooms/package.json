@@ -1,0 +1,17 @@
+{
+  "name": "conflictMeetingRooms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 24"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --watch meetings.test.js"
+  },
+  "dependencies": {
+    "jest": "^30.3.0"
+  }
+}
